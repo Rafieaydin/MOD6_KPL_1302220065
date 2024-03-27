@@ -15,5 +15,7 @@ class Program {
             s.addVideo(v);
         }
         s.PrintAllVideoCount();
+
+        Console.WriteLine("Total video playcount allvideo :" + s.getVideoPlaycount());
     }
 }

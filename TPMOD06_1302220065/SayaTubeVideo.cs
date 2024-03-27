@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace TPMOD06_1302220065
         private int PlayCount;
         public SayaTubeVideo(string judul)
         {
+            Debug.Assert(title != null && title.Length < 200);
             Random random = new Random();
             this.id = random.Next(10000, 99999);
             this.title = judul;
@@ -24,7 +26,14 @@ namespace TPMOD06_1302220065
             {
                 checked
                 {
-                    this.PlayCount += input;
+                    if (input >= 25000000 || input < 0)
+                    {
+                        Console.WriteLine("input playcount tidak boleh melebihi nilai maximum atau kurang dari 0;");
+                    }
+                    else {
+                        this.PlayCount += input;
+                    }
+                    
                 }
             }catch (OverflowException ex)
             {

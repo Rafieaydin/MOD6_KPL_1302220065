@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace TPMOD06_1302220065
         public String username;
         public SayaTubeUser(string username)
         {
+            Debug.Assert(username != null && username.Length <= 100);
+
             Random random = new Random();
             this.id = random.Next(10000,99999);
             this.username = username;
@@ -36,13 +39,18 @@ namespace TPMOD06_1302220065
 
         public void PrintAllVideoCount() {
             Console.WriteLine("User : " + this.username);
-            int i = 0;
+            int i = 1;
             foreach (var x in uploadedVideo)
             {
-                i++;
+                
+                if (i == 9) {
+                    return;
+                }
+                Console.WriteLine(uploadedVideo);
                 Console.WriteLine("Video ke : " + i);
                 x.PrintVideoDetail();
                 Console.WriteLine();
+                i++;
             }
         }
     }
